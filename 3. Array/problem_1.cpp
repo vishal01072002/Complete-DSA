@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-
+    // git push -u origin main
     // minimum and maximum number in array
 
     int size;
