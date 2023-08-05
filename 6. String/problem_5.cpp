@@ -24,7 +24,7 @@ string removeAdjcent(string s){
             ansIndx++;
         }
         i++;
-    }    
+    }
     return ans;
 }
 
@@ -33,7 +33,6 @@ int main(){
     string str = "abbaca";
     int n = str.size();
 
-    // step 2 reverse whole string
     cout<<str<<endl;
     cout<< removeAdjcent(str);
     
