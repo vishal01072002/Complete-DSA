@@ -4,7 +4,6 @@ using namespace std;
 #include<map>
 
 // Remove duplicates from sorted Linked List.
-
 class Node{
     public:
     int data;
@@ -44,7 +43,9 @@ void removeDuplicate(Node* head){
         if(head->data == head->next->data){
             head->next = head->next->next;
         }
-        head = head->next;
+        else{
+            head = head->next;
+        }
     }
     return ;
 }
