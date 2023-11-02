@@ -11,25 +11,30 @@ using namespace std;
 
 // pop is just reverse of these steps
 
-class Stacks{
+class NQueue{
     int *arr;
-    int *top;
+    int *front;
+    int *rear;
     int *next;
     int freeSpot;
     int n;
+    int k;
 
     public:
-        Stacks(int s, int N){
-            n = s;
-            arr = new int[s];
-            next = new int[s];
-            top = new int[N];
+        NQueue(int n, int k){
+            this->n = n;
+            this->k = k;
+            arr = new int[n];
+            next = new int[n];
+            front = new int[k];
+            rear = new int[k];
 
             // initialization 
             freeSpot = 0;
 
-            for(int i=0; i<N; i++){
-                top[i] = -1;
+            for(int i=0; i<k; i++){
+                front[i] = -1;
+                rear[i] = -1;
             }
             
             for(int i=0; i<n; i++){
@@ -38,7 +43,7 @@ class Stacks{
             next[n-1] = -1;
         }
 
-        int push(int n, int m){
+        int push(int x, int m){
             // overflow
             if(freeSpot == -1){
                 return -1;
@@ -50,14 +55,22 @@ class Stacks{
             // update free spot
             freeSpot = next[index];
 
-            // update value
-            arr[index] = n;
+
+            // first time
+            if(front[m-1] == -1){
+                front[m-1] = index;
+            }
+            else{
+            }
 
             // update next array
-            next[index] = top[m-1];
+            next[index] = rear[m-1];
 
-            // update top
-            top[m-1] = index;
+            // update value
+            arr[index] = x;
+
+            // update rear
+            rear[m-1] = index;
 
             return 1;
         }
@@ -91,15 +104,15 @@ class Stacks{
 };
 
 int main(){
-    Stacks st(6,3);
+    NQueue q(6,3);
 
-    st.push(1,1);
-    st.push(2,1);
-    st.push(3,2);
+    q.push(1,1);
+    q.push(2,1);
+    q.push(3,2);
 
-    st.pop(1);
-    st.pop(2);
-    st.pop(2);
-    st.pop(1);
+    q.pop(1);
+    q.pop(2);
+    q.pop(2);
+    q.pop(1);
     return 0;
 }

@@ -14,7 +14,7 @@ class Stacks{
         void push(int curr){
             // check if it is first element
             if(s.empty()){
-                st.push(curr);
+                s.push(curr);
                 mini = curr;
             }
             else{
