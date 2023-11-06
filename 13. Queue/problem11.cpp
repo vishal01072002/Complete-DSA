@@ -61,42 +61,42 @@ class NQueue{
                 front[m-1] = index;
             }
             else{
+                // link prev element to new using next
+                // prev rear to curr index link
+                next[rear[m-1]] = index;
             }
 
-            // update next array
-            next[index] = rear[m-1];
-
-            // update value
-            arr[index] = x;
+            // update next index as no empty
+            next[index] = -1;
 
             // update rear
             rear[m-1] = index;
-
+            
+            // update value
+            arr[index] = x;
             return 1;
         }
 
         int pop(int m){
-            if(top[m-1] == -1){
+            if(front[m-1] == -1){
                 cout << "stack underflow" << endl;
                 return -1;
             }
 
             // find index of poped element
-            int index = top[m-1];
+            int index = front[m-1];
 
-            // reverse of push
-
-            // update top
-            top[m-1] = next[index];
+            // update front using next
+            // coz next store the addres of next element
+            front[m-1] = next[index];
             
-            // update next array to next free spot
+            // update freespot in next and also freespot to curr poped index
             next[index] = freeSpot;
+            // update freeSpot 
+            freeSpot = index;
 
             // extract value
             int value = arr[index];
-
-            // update freeSpot 
-            freeSpot = index;
 
             // return value
             return value;

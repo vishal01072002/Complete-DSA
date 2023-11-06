@@ -14,44 +14,61 @@ void printque(queue<int> q){
 }
 
 int main(){
-    queue<int> q ;
-    int ans;
-    vector<int> arr = {2,5,-2,7,-3,-1,-2};
-    int n = arr.size();
-
-    int mini = 9999;
-    int maxi = -9999;
     int k = 4;
-    int minsum = 0;
-    int maxsum = 0;
+    vector<int> arr = {2,5,-1,7,-3,-1,-2};
+    int n = arr.size();
+    int ans = 0;
+
+    deque<int> mini ;
+    deque<int> maxi ;
 
     // for first k window
     for(int i=0; i<k; i++){
-        mini = min(arr[i],mini);
-        maxi = min(arr[i],maxi);
-    }
-    minsum = mini;
-    maxsum = maxi;
 
-    for(int i=0; i<n; i++){
-        // first find balance
-        balance = balance + currPetrol[i] - nextdist[i];
-        if(balance < 0){
-            kami = kami + balance;
-            start = i+1;
-            balance = 0;
+        // adding element in queue 
+        while(!maxi.empty() && arr[maxi.back()] <= arr[i]){
+            maxi.pop_back();
         }
+        maxi.push_back(i);
+
+        while(!mini.empty() && arr[mini.back()] >= arr[i]){
+            mini.pop_back();
+        }
+        mini.push_back(i);
+    }
+
+    // calculate answer for first k window
+    cout<< arr[maxi.front()] << " " << arr[mini.front()] << endl;
+    ans += arr[maxi.front()] + arr[mini.front()];
+
+    for(int i=k; i<n; i++){
+        // next window 
+
+        // removal of element that not be in window
+        while (maxi.front() <= i-k){
+            maxi.pop_front();
+        }
+        while(mini.front() <= i-k){
+            mini.pop_front();
+        }
+
+        // adding of element in queue
+        while(!maxi.empty() && arr[maxi.back()] <= arr[i]){
+            maxi.pop_back();
+        }
+        maxi.push_back(i);
+
+        while(!mini.empty() && arr[mini.back()] >= arr[i]){
+            mini.pop_back();
+        }
+        mini.push_back(i);   
+
+        // calculate answer for that window
+        cout<< arr[maxi.front()] << " " << arr[mini.front()] << endl;
+        ans += arr[maxi.front()] + arr[mini.front()];
     }
     
-    if(kami + balance >= 0){
-        return front;
-    }
-    else{
-        return -1;
-    }
-    for(auto i: ans){
-        cout<<i<<" ";
-    }
-    // now for last
+    cout<< ans <<" ";
+    
     return 0;
 }

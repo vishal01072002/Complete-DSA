@@ -37,11 +37,12 @@ int main(){
     }
     
     if(kami + balance >= 0){
-        return front;
+        return start;
     }
     else{
         return -1;
     }
+    
     for(auto i: ans){
         cout<<i<<" ";
     }

@@ -3,7 +3,7 @@
 #include<queue>
 using namespace std;
 
-// interleave the first and second half of queue
+// interleave the first and second half of queue N is even
 // eg  -  1,2,3,4,5,6
 //  ===>  1,4,2,5,3,6
 
@@ -27,7 +27,7 @@ void method1(queue<int> q){
     }
 
     // insert in orignal queue at alternate manner
-    while(!temp.empty()){
+    for(int i=0; i<((size+1)/2); i++){
         q.push(temp.front());
         q.push(q.front());
 

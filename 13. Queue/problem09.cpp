@@ -14,16 +14,9 @@ void printque(stack<int> q){
 class queues{
     stack<int> s1;
     stack<int> s2;
-    int size;
-    int front;
-    int rear;
 
     public:
-    queues(int s){
-        size = s;
-        front = rear = -1;
-    }
-
+    
     void push(int x){
         if(!isempty()){
         //    cout<< "overflow" << endl;
